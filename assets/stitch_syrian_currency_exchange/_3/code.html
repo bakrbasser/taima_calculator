@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>جرد اليوم - الرافدين للصرافة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#a4acc5",
+                    "inverse-primary": "#b6c4ff",
+                    "primary-fixed": "#dce1ff",
+                    "surface-bright": "#f8f9ff",
+                    "primary": "#00236f",
+                    "surface-container": "#e5eeff",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-highest": "#d3e4fe",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffdcc3",
+                    "on-primary-fixed": "#00164e",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary": "#222a3e",
+                    "outline": "#757682",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#2f1500",
+                    "tertiary-fixed": "#dae2fd",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#264191",
+                    "on-background": "#0b1c30",
+                    "on-surface": "#0b1c30",
+                    "on-primary-container": "#90a8ff",
+                    "inverse-surface": "#213145",
+                    "primary-container": "#1e3a8a",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#fe932c",
+                    "surface-container-low": "#eff4ff",
+                    "surface-tint": "#4059aa",
+                    "on-tertiary-fixed": "#131b2e",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-container": "#384055",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "surface": "#f8f9ff",
+                    "on-surface-variant": "#444651",
+                    "secondary": "#904d00",
+                    "on-secondary-container": "#663500",
+                    "outline-variant": "#c5c5d3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "sm": "12px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "container-max": "1200px",
+                    "xxl": "48px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "IBM Plex Sans"
+                    ],
+                    "headline-md": [
+                            "IBM Plex Sans"
+                    ],
+                    "label-md": [
+                            "IBM Plex Sans"
+                    ],
+                    "display-lg": [
+                            "IBM Plex Sans"
+                    ],
+                    "numeric-xl": [
+                            "IBM Plex Sans"
+                    ],
+                    "headline-lg": [
+                            "IBM Plex Sans"
+                    ],
+                    "body-lg": [
+                            "IBM Plex Sans"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "numeric-xl": [
+                            "40px",
+                            {
+                                    "lineHeight": "48px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md rtl">
+<!-- TopNavBar -->
+<header class="bg-surface-bright dark:bg-surface-dim w-full h-16 flex justify-between items-center px-lg w-full sticky top-0 z-50 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">الرافدين للصرافة</h1>
+</div>
+<div class="flex items-center gap-md text-primary dark:text-inverse-primary">
+<span class="material-symbols-outlined hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-sm rounded-full cursor-pointer" data-icon="search">search</span>
+<span class="material-symbols-outlined hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-sm rounded-full cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-sm rounded-full cursor-pointer" data-icon="account_balance">account_balance</span>
+<span class="material-symbols-outlined hover:bg-surface-container dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-sm rounded-full cursor-pointer" data-icon="settings">settings</span>
+<img alt="صورة المستخدم الشخصية" class="w-8 h-8 rounded-full object-cover ml-sm border border-outline-variant" data-alt="A professional headshot of a Middle Eastern male bank teller in a crisp white shirt and dark blue tie, set against a blurred background of a modern exchange office with soft, cool lighting. The image should convey trust and stability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv1AuE_NS7sLHEeppjmcH_41WmNQRAKvZV9eIAOKSby4NBc49uDzO_JyIKOwqjYGlHUva8jywWRrcF-NdrOC7ge8T_LI4HkbsqMu4ZtNi2Y1990XlSFYwTsMdRpSmZF9ACloisLWYdrllx3cAfzc1Hss-DlJIPBGPnN1o9l-AVdsWM4NR0WyDFeA8UgHsy_fKScrOeOHR9shlcnUmXiQKEMFxkFRfDz4__-59-YeMmmOIRVjrqLgo2"/>
+</div>
+</header>
+<div class="flex h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container h-full w-64 fixed right-0 top-16 border-l border-outline-variant dark:border-outline flex flex-col p-md gap-base z-40 hidden md:flex">
+<div class="mb-lg flex flex-col items-center justify-center text-center">
+<img alt="شعار الرافدين" class="w-16 h-16 mb-sm object-contain" data-alt="A stylized, modern geometric logo representing a river or two streams merging, rendered in deep primary blue and a touch of secondary gold, set on a clean white background. The design is minimal, corporate, and trustworthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7i8chWi--QqUrT1i5-qbo3LnYC4PanolSStWTK_FYao5f1rUC1RZrPpiibUEfLnbH8v7A0Em-HRUQ2jbiyQwmfFUpvVlEo5WHKsim1iQ8f_5KAYOaPMjuhhiMSf7y3iZyJcYmn7FEyrvxFAQViN86EpAjh_GhM-ur_ciUh2HnBjqiT99r1BjM-zsNxW-T2dGuhduTOVddsDiZuRUxsYyAEeXIShGAtYp9l3KS2Zgi0NgXiH3Ktia4"/>
+<h2 class="text-headline-sm font-headline-md text-primary dark:text-inverse-primary">الرافدين للصرافة</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-xs">النظام الإداري الموحد</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md py-sm px-md rounded-lg mb-md hover:bg-surface-tint transition-colors active:scale-95 duration-150 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                عملية جديدة
+            </button>
+<ul class="flex-1 flex flex-col gap-xs font-label-md text-label-md">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                        لوحة التحكم
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md bg-primary text-on-primary rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+                        جرد اليومية
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="currency_exchange">currency_exchange</span>
+                        محول العملات
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="vitals">vitals</span>
+                        رصيد الافتتاح
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                        التقارير
+                    </a>
+</li>
+</ul>
+<ul class="mt-auto flex flex-col gap-xs border-t border-outline-variant pt-md font-label-md text-label-md">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                        الدعم الفني
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-error hover:bg-error-container rounded-lg p-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                        تسجيل الخروج
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 mr-0 md:mr-64 p-lg md:p-xxl overflow-y-auto">
+<!-- Header & Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">جرد اليوم</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">ملخص العمليات والأرصدة لليوم الحالي</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="file_download">file_download</span>
+                        تصدير التقرير
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="print">print</span>
+                        طباعة الجرد
+                    </button>
+</div>
+</div>
+<!-- Total Profit Summary Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-lg mb-xl relative overflow-hidden shadow-[0_4px_12px_rgba(30,58,138,0.05)]">
+<div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiMwMDIzNmYiLz48L3N2Zz4=')]"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">إجمالي أرباح اليوم</p>
+<div class="flex items-baseline gap-sm">
+<span class="font-numeric-xl text-numeric-xl text-primary">24,500,000</span>
+<span class="font-label-md text-label-md text-on-surface-variant">SYP</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low px-md py-sm rounded-lg border border-outline-variant flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface">السوق مفتوح</span>
+</div>
+</div>
+</div>
+<!-- Inventory Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-md mb-xl">
+<!-- USD Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md hover:shadow-[0_4px_12px_rgba(30,58,138,0.05)] transition-shadow">
+<div class="flex justify-between items-center mb-md pb-md border-b border-outline-variant border-opacity-50">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">US</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-primary">دولار أمريكي</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">USD</p>
+</div>
+</div>
+<div class="text-left">
+<p class="font-label-md text-label-md text-on-surface-variant">الرصيد الحالي</p>
+<p class="font-numeric-xl text-[24px] text-primary">$45,200</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div class="bg-surface-bright p-sm rounded-lg border border-outline-variant border-opacity-30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">الرصيد الافتتاحي</p>
+<p class="font-body-md text-body-md font-semibold">$50,000</p>
+</div>
+<div class="bg-surface-bright p-sm rounded-lg border border-outline-variant border-opacity-30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">القيمة (SYP)</p>
+<p class="font-body-md text-body-md font-semibold">668,960,000</p>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-[#16a34a]" data-icon="arrow_downward">arrow_downward</span> إجمالي الوارد</p>
+<p class="font-body-md text-body-md text-[#16a34a] font-semibold">+$12,500</p>
+</div>
+<div class="bg-error-container bg-opacity-30 p-sm rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-error" data-icon="arrow_upward">arrow_upward</span> إجمالي الصادر</p>
+<p class="font-body-md text-body-md text-error font-semibold">-$17,300</p>
+</div>
+</div>
+</div>
+<!-- EUR Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md hover:shadow-[0_4px_12px_rgba(30,58,138,0.05)] transition-shadow">
+<div class="flex justify-between items-center mb-md pb-md border-b border-outline-variant border-opacity-50">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">EU</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-primary">يورو</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">EUR</p>
+</div>
+</div>
+<div class="text-left">
+<p class="font-label-md text-label-md text-on-surface-variant">الرصيد الحالي</p>
+<p class="font-numeric-xl text-[24px] text-primary">€18,450</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div class="bg-surface-bright p-sm rounded-lg border border-outline-variant border-opacity-30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">الرصيد الافتتاحي</p>
+<p class="font-body-md text-body-md font-semibold">€15,000</p>
+</div>
+<div class="bg-surface-bright p-sm rounded-lg border border-outline-variant border-opacity-30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">القيمة (SYP)</p>
+<p class="font-body-md text-body-md font-semibold">295,200,000</p>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-[#16a34a]" data-icon="arrow_downward">arrow_downward</span> إجمالي الوارد</p>
+<p class="font-body-md text-body-md text-[#16a34a] font-semibold">+€6,200</p>
+</div>
+<div class="bg-error-container bg-opacity-30 p-sm rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-error" data-icon="arrow_upward">arrow_upward</span> إجمالي الصادر</p>
+<p class="font-body-md text-body-md text-error font-semibold">-€2,750</p>
+</div>
+</div>
+</div>
+<!-- AED Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-md hover:shadow-[0_4px_12px_rgba(30,58,138,0.05)] transition-shadow">
+<div class="flex justify-between items-center mb-md pb-md border-b border-outline-variant border-opacity-50">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">AE</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-primary">درهم إماراتي</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">AED</p>
+</div>
+</div>
+<div class="text-left">
+<p class="font-label-md text-label-md text-on-surface-variant">الرصيد الحالي</p>
+<p class="font-numeric-xl text-[24px] text-primary">125,000</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div class="bg-surface-bright p-sm rounded-lg border border-outline-variant border-opacity-30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">الرصيد الافتتاحي</p>
+<p class="font-body-md text-body-md font-semibold">120,000</p>
+</div>
+<div class="bg-surface-bright p-sm rounded-lg border border-outline-variant border-opacity-30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">القيمة (SYP)</p>
+<p class="font-body-md text-body-md font-semibold">500,000,000</p>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-[#16a34a]" data-icon="arrow_downward">arrow_downward</span> إجمالي الوارد</p>
+<p class="font-body-md text-body-md text-[#16a34a] font-semibold">+45,000</p>
+</div>
+<div class="bg-error-container bg-opacity-30 p-sm rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs flex items-center gap-xs"><span class="material-symbols-outlined text-[16px] text-error" data-icon="arrow_upward">arrow_upward</span> إجمالي الصادر</p>
+<p class="font-body-md text-body-md text-error font-semibold">-40,000</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

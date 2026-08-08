@@ -32,11 +32,10 @@ class _CurrencyBoxState extends State<CurrencyBox> {
       onTap: () {
         widget.selectedCurrencyId.value = widget.currency.id;
       },
-      onLongPress: () {
+      onSecondaryTap: () {
         showDialog(
           context: context,
-          builder: (context) =>
-              UpdateCurrenciesPricePage(currency: widget.currency),
+          builder: (context) => UpdateCurrenciesPricePage(),
         );
       },
       child: Container(

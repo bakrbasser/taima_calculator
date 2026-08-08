@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taima_calculator/source/colors.dart';
 import 'package:taima_calculator/source/domain/currency.dart';
+import 'package:taima_calculator/source/presentation/cubit/currencies_list/currencies_list_cubit.dart';
 import 'package:taima_calculator/source/presentation/cubit/update_currencies/update_currencies_cubit.dart';
 import 'package:taima_calculator/source/presentation/dialogs.dart';
 import 'package:taima_calculator/source/presentation/widgets/amount_entry_field.dart';
 import 'package:taima_calculator/source/theme.dart';
 
 class UpdateCurrenciesPricePage extends StatefulWidget {
-  const UpdateCurrenciesPricePage({super.key, required this.currency});
-  final Currency currency;
+  const UpdateCurrenciesPricePage({super.key});
 
   @override
   State<UpdateCurrenciesPricePage> createState() =>
@@ -17,14 +17,12 @@ class UpdateCurrenciesPricePage extends StatefulWidget {
 }
 
 class _UpdateCurrenciesPricePageState extends State<UpdateCurrenciesPricePage> {
-  TextEditingController buyController = TextEditingController();
-  TextEditingController sellController = TextEditingController();
-
+  List<Currency> currencies = [];
   @override
   void initState() {
     super.initState();
-    buyController.text = widget.currency.buyPrice.toString();
-    sellController.text = widget.currency.sellPrice.toString();
+
+    currencies = context.read<CurrenciesListCubit>().fetchCurrencies();
   }
 
   @override
@@ -41,22 +39,86 @@ class _UpdateCurrenciesPricePageState extends State<UpdateCurrenciesPricePage> {
           showAlertDialog(context, 'تم تحديث سعر العملة بنجاح');
         }
       },
-      child: AlertDialog(
+      child: Scaffold(
+        appBar: AppBar(title: Text('تحديث اسعار كل العملات')),
         backgroundColor: white,
+        body: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            spacing: 16,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: currencies.length,
+                  itemBuilder: (context, index) =>
+                      UpdateCurrencyPriceFields(currency: currencies[index]),
+                ),
+              ),
 
-        title: Text(
-          'تعديل سعر بيع وشراء العملة ${widget.currency.name}',
-          style: textTheme(context).bodyLarge!.copyWith(color: Colors.black),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: deepGreen),
+                onPressed: () {
+                  // final newSellPrice = parseFormattedNumber(sellController.text);
+                  // final newBuyPrice = parseFormattedNumber(buyController.text);
+                  // context.read<UpdateCurrenciesCubit>().updateCurrencies(
+                  //   widget.currency.id,
+                  //   newSellPrice,
+                  //   newBuyPrice,
+                  // );
+                },
+                child: Text(
+                  'تحديث سعر العملة',
+                  style: textTheme(
+                    context,
+                  ).bodyLarge!.copyWith(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
-        content: Column(
+      ),
+    );
+  }
+}
+
+class UpdateCurrencyPriceFields extends StatefulWidget {
+  const UpdateCurrencyPriceFields({super.key, required this.currency});
+
+  final Currency currency;
+
+  @override
+  State<UpdateCurrencyPriceFields> createState() =>
+      _UpdateCurrencyPriceFieldsState();
+}
+
+class _UpdateCurrencyPriceFieldsState extends State<UpdateCurrencyPriceFields> {
+  TextEditingController buyController = TextEditingController();
+  TextEditingController sellController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    buyController.text = widget.currency.buyPrice.toString();
+    sellController.text = widget.currency.sellPrice.toString();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 32),
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           spacing: 8,
           children: [
             Text(
-              'ادخل سعر الشراء',
-              style: textTheme(
-                context,
-              ).bodyLarge!.copyWith(fontWeight: FontWeight.w500),
+              'ادخل سعر شراء ${widget.currency.name}',
+              style: textTheme(context).bodyLarge!.copyWith(
+                fontWeight: FontWeight.w500,
+                color: deepGreen,
+              ),
             ),
             SizedBox(height: 8),
             AmountEntryField(
@@ -65,7 +127,7 @@ class _UpdateCurrenciesPricePageState extends State<UpdateCurrenciesPricePage> {
               hintText: 'ادخل سعر شراء ${widget.currency.name}',
             ),
             Text(
-              'ادخل سعر المبيع',
+              'ادخل سعر مبيع ${widget.currency.name}',
               style: textTheme(
                 context,
               ).bodyLarge!.copyWith(fontWeight: FontWeight.w500),
@@ -75,25 +137,6 @@ class _UpdateCurrenciesPricePageState extends State<UpdateCurrenciesPricePage> {
               controller: sellController,
 
               hintText: 'ادخل سعر مبيع ${widget.currency.name}',
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: deepGreen),
-              onPressed: () {
-                final newSellPrice = parseFormattedNumber(sellController.text);
-                final newBuyPrice = parseFormattedNumber(buyController.text);
-                context.read<UpdateCurrenciesCubit>().updateCurrencies(
-                  widget.currency.id,
-                  newSellPrice,
-                  newBuyPrice,
-                );
-              },
-              child: Text(
-                'تحديث سعر العملة',
-                style: textTheme(
-                  context,
-                ).bodyLarge!.copyWith(color: Colors.white),
-              ),
             ),
           ],
         ),

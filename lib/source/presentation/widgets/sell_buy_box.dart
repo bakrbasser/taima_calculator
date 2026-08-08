@@ -13,7 +13,7 @@ class SellBuyBox extends StatelessWidget {
     if (notifier.value == SellBuyType.buy && type == SellBuyType.buy) {
       return deepGreen;
     } else if (notifier.value == SellBuyType.sell && type == SellBuyType.sell) {
-      return Colors.red;
+      return Colors.red.shade900;
     } else {
       return white;
     }

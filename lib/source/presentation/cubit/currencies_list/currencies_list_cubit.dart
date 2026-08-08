@@ -21,4 +21,9 @@ class CurrenciesListCubit extends Cubit<CurrenciesListState> {
     }
     return [];
   }
+
+  Currency getCurrencyAccordingToId(int id) {
+    final currencies = hive.fetchAllCurrencies();
+    return currencies.firstWhere((element) => element.id == id);
+  }
 }

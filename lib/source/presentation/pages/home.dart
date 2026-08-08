@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taima_calculator/source/colors.dart';
-import 'package:taima_calculator/source/domain/currency.dart';
 import 'package:taima_calculator/source/presentation/cubit/currencies_list/currencies_list_cubit.dart';
 import 'package:taima_calculator/source/presentation/widgets/amount_entry_field.dart';
 import 'package:taima_calculator/source/presentation/widgets/currency_box.dart';
@@ -24,72 +23,93 @@ class _HomeState extends State<Home> {
   final TextEditingController amountController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    sellBuyNotifier.addListener(() {
+      setState(() {});
+    });
+  }
+
+  Color get bgColor {
+    if (sellBuyNotifier.value == SellBuyType.buy) {
+      return const Color.fromARGB(225, 245, 248, 247);
+    } else {
+      return deepGreen;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: bgColor,
       appBar: AppBar(title: Text('حاسبة عملات تيما')),
-      body: Row(
-        children: [
-          HomeNavigationRails(),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.15),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.50,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(16),
+      // HomeNavigationRails(),
+      // SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+      body: Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.6,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SellBuyButtons(notifier: sellBuyNotifier),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 32),
+                      Text(
+                        'اختر العملة المراد تصريفها',
+                        style: textTheme(
+                          context,
+                        ).bodyLarge!.copyWith(fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(height: 8),
+                      CurrenciesListWithBlocBuilder(
+                        selectedCurrencyId: selectedCurrencyId,
+                      ),
+                      SizedBox(height: 32),
+                      Text(
+                        'ادخل المبلغ المراد تصريفه',
+                        style: textTheme(
+                          context,
+                        ).bodyLarge!.copyWith(fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(height: 8),
+                      AmountEntryField(
+                        controller: amountController,
+
+                        hintText:
+                            'ادخل المبلغ المراد تحويله الى الليرة السورية',
+                      ),
+                      SizedBox(height: 32),
+                      SelectedCurrencyPrice(
+                        selectedCurrencyId: selectedCurrencyId,
+                        sellBuyNotifier: sellBuyNotifier,
+                      ),
+                      SizedBox(height: 32),
+
+                      Center(
+                        child: TheResultOfCalculation(
+                          selectedCurrencyId: selectedCurrencyId,
+                          sellBuyNotifier: sellBuyNotifier,
+                          amountController: amountController,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SellBuyButtons(notifier: sellBuyNotifier),
-                  SizedBox(height: 32),
-                  Text(
-                    'اختر العملة المراد تصريفها',
-                    style: textTheme(
-                      context,
-                    ).bodyLarge!.copyWith(fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(height: 8),
-                  CurrenciesListWithBlocBuilder(
-                    selectedCurrencyId: selectedCurrencyId,
-                  ),
-                  SizedBox(height: 32),
-                  Text(
-                    'ادخل المبلغ المراد تصريفه',
-                    style: textTheme(
-                      context,
-                    ).bodyLarge!.copyWith(fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(height: 8),
-                  AmountEntryField(
-                    controller: amountController,
-
-                    hintText: 'ادخل المبلغ المراد تحويله الى الليرة السورية',
-                  ),
-                  SizedBox(height: 32),
-                  SelectedCurrencyPrice(
-                    selectedCurrencyId: selectedCurrencyId,
-                    sellBuyNotifier: sellBuyNotifier,
-                  ),
-                  SizedBox(height: 32),
-
-                  Center(
-                    child: TheResultOfCalculation(
-                      selectedCurrencyId: selectedCurrencyId,
-                      sellBuyNotifier: sellBuyNotifier,
-                      amountController: amountController,
-                    ),
-                  ),
-                ],
-              ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -156,34 +176,40 @@ class TheResultOfCalculation extends StatefulWidget {
 class _TheResultOfCalculationState extends State<TheResultOfCalculation> {
   String result = '0';
 
+  void get calculateResult {
+    setState(() {
+      if (widget.amountController.text.isEmpty) {
+        result = '0';
+      } else {
+        double price = 0;
+        final selectedCurrency = context
+            .read<CurrenciesListCubit>()
+            .getCurrencyAccordingToId(widget.selectedCurrencyId.value);
+        if (widget.sellBuyNotifier.value == SellBuyType.buy) {
+          price =
+              selectedCurrency.buyPrice *
+              parseFormattedNumber(widget.amountController.text);
+        } else {
+          price =
+              selectedCurrency.sellPrice *
+              parseFormattedNumber(widget.amountController.text);
+        }
+        result = formatNumber(price.toString());
+      }
+    });
+  }
+
   @override
   void initState() {
-    final amountCtr = widget.amountController;
     super.initState();
-    amountCtr.addListener(() {
-      setState(() {
-        if (amountCtr.text.isEmpty) {
-          result = '0';
-        } else {
-          double price = 0;
-          Currency selectedCurrency = context
-              .read<CurrenciesListCubit>()
-              .fetchCurrencies()
-              .firstWhere(
-                (element) => element.id == widget.selectedCurrencyId.value,
-              );
-          if (widget.sellBuyNotifier.value == SellBuyType.buy) {
-            price =
-                selectedCurrency.buyPrice *
-                parseFormattedNumber(amountCtr.text);
-          } else {
-            price =
-                selectedCurrency.sellPrice *
-                parseFormattedNumber(amountCtr.text);
-          }
-          result = formatNumber(price.toString());
-        }
-      });
+    widget.amountController.addListener(() {
+      calculateResult;
+    });
+    widget.selectedCurrencyId.addListener(() {
+      calculateResult;
+    });
+    widget.sellBuyNotifier.addListener(() {
+      calculateResult;
     });
   }
 
